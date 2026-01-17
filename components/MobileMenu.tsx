@@ -57,7 +57,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 </div>
 
                 <nav className="flex-1 px-8 py-4 flex flex-col gap-2">
-                    {["About", "Services", "Work"].map((item, index) => (
+                    {["About", "Services", "Work", "Testimonials", "Articles", "FAQ"].map((item, index) => (
                         <a
                             key={item}
                             href={`#${item.toLowerCase()}`}

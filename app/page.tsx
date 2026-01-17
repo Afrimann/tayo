@@ -58,7 +58,7 @@ export default function Home() {
             <Navbar />
 
             {/* Hero Section */}
-            <section className="relative pt-24 pb-12 md:pt-32 md:pb-20 min-h-[90vh] flex items-center justify-center overflow-hidden">
+            <section className="relative pt-24 pb-12 md:pt-4 md:pb-20 min-h-[90vh] flex items-center justify-center overflow-hidden">
                 <HeroBackground />
 
                 <div className="container grid lg:grid-cols-2 gap-12 items-center relative z-10">

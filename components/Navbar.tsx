@@ -1,20 +1,36 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import MobileMenu from "./MobileMenu";
 import { motion } from "framer-motion";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
     const toggleMenu = () => setIsOpen(!isOpen);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            // Show navbar when scrolled past 100vh (approx Hero section)
+            const heroHeight = window.innerHeight - 100;
+            if (window.scrollY > heroHeight) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
         <motion.header
             initial={{ y: -100 }}
-            animate={{ y: 0 }}
+            animate={{ y: isVisible ? 0 : -100 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="fixed top-0 left-0 right-0 h-20 z-50 border-b border-white/5 bg-black/60 backdrop-blur-2xl supports-backdrop-filter:bg-black/40 transition-all duration-300"
         >
@@ -32,8 +48,8 @@ export default function Navbar() {
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:block">
-                    <ul className="flex items-center gap-10">
-                        {["About", "Services", "Work"].map((item) => (
+                    <ul className="flex items-center gap-8">
+                        {["About", "Services", "Work", "Testimonials", "Articles", "FAQ"].map((item) => (
                             <li key={item}>
                                 <a
                                     href={`#${item.toLowerCase()}`}
