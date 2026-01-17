@@ -7,6 +7,12 @@ import About from "../components/About";
 import Services from "../components/Services";
 import WhyChooseMe from "../components/WhyChooseMe";
 import Work from "../components/Work";
+import Testimonials from "../components/Testimonials";
+import Articles from "../components/Articles";
+import Process from "../components/Process";
+import FAQ from "../components/FAQ";
+import Newsletter from "../components/Newsletter";
+import Footer from "../components/Footer";
 import Contact from "../components/Contact";
 import HeroBackground from "../components/HeroBackground";
 
@@ -115,7 +121,13 @@ export default function Home() {
             <Services />
             <WhyChooseMe />
             <Work />
+            <Testimonials />
+            <Articles />
+            <Process />
+            <FAQ />
             <Contact />
+            <Newsletter />
+            <Footer />
         </main>
     );
 }

@@ -45,14 +45,6 @@ export default function Contact() {
                         </a>
                     </div>
                 </motion.div>
-
-                <div className="mt-20 pt-8 border-t border-white/5 text-sm text-muted-foreground flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p>&copy; {new Date().getFullYear()} TDT - The Digital Tee. All rights reserved.</p>
-                    <div className="flex gap-6">
-                        <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
-                    </div>
-                </div>
             </div>
         </section>
     );
