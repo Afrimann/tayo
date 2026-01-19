@@ -2,25 +2,26 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Calendar } from "lucide-react";
+import Image from "next/image";
 
 const articles = [
     {
-        title: "The Future of Social Media Marketing in 2024",
-        category: "Strategy",
-        excerpt: "Discover the emerging trends that will shape how brands interact with their audience in the coming year.",
-        date: "Jan 12, 2024",
+        title: 'A Christmas Reflection What 2025 Gave Me That I Didn’t Start With',
+        category: "Reflection",
+        excerpt: "As the year winds down and Christmas reminds us of the gift of reflection, I’ve been looking back on 2025 with a full heart. Some wins looked small at first, but in hindsight, they were everything.",
+        date: "Dec, 2025",
         readTime: "5 min read",
-        image: "bg-linear-to-br from-amber-500/20 to-orange-500/20", // Placeholder gradient
-        link: "#"
+        image: "/hero-bg-6.jpeg",
+        link: "https://www.linkedin.com/feed/update/urn:li:activity:7410279574380474368/?originTrackingId=QGqBMkzsdi42gRH7voZqxg%3D%3D"
     },
     {
-        title: "5 Copywriting Hacks for Higher Conversion Rates",
+        title: "I obeyed the clarion’s call and now I am officially...",
         category: "Copywriting",
-        excerpt: "Learn psychological triggers and writing techniques that compel your audience to take action immediately.",
-        date: "Dec 08, 2023",
+        excerpt: "Leadership has a way of finding you, even when you’re not trying to find it. Impact attracts responsibility.",
+        date: "Dec, 2023",
         readTime: "4 min read",
-        image: "bg-linear-to-br from-purple-500/20 to-pink-500/20", // Placeholder gradient
-        link: "#"
+        image: "/tayo-nysc.jpg",
+        link: "https://www.linkedin.com/feed/update/urn:li:activity:7404411312958521346/?originTrackingId=QfOSl%2F1JUKyuTautxRA5rA%3D%3D"
     },
     {
         title: "Why Your Brand Needs a Consistent Visual Identity",
@@ -28,7 +29,7 @@ const articles = [
         excerpt: "Visual consistency builds trust. Here is how to create a cohesive look across all your digital touchpoints.",
         date: "Nov 25, 2023",
         readTime: "6 min read",
-        image: "bg-linear-to-br from-blue-500/20 to-cyan-500/20", // Placeholder gradient
+        image: "/hero-bg-1.jpg",
         link: "#"
     }
 ];
@@ -77,11 +78,17 @@ export default function Articles() {
                             className="group flex flex-col h-full bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-primary/50 transition-colors"
                         >
                             {/* Image Placeholder */}
-                            <div className={`h-48 w-full ${article.image} relative overflow-hidden`}>
-                                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
+                            <div className="h-48 w-full relative overflow-hidden">
+                                <Image
+                                    src={article.image}
+                                    alt={article.title}
+                                    fill
+                                    className="object-cover object-top w-full transition-transform duration-500 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10" />
                             </div>
 
-                            <div className="p-8 flex flex-col flex-grow">
+                            <div className="p-8 flex flex-col grow">
                                 <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                                     <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-primary">
                                         {article.category}
@@ -98,7 +105,7 @@ export default function Articles() {
                                     </a>
                                 </h3>
 
-                                <p className="text-muted-foreground line-clamp-3 mb-6 flex-grow">
+                                <p className="text-muted-foreground line-clamp-3 mb-6 grow">
                                     {article.excerpt}
                                 </p>
 

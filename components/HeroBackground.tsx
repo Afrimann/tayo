@@ -35,22 +35,18 @@ export default function HeroBackground() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 2, ease: "easeInOut" }}
-                    className="absolute inset-0"
                 >
                     <Image
                         src={images[index]}
                         alt="Hero Background"
                         fill
-                        className="object-cover object-center opacity-40"
+                        className="object-cover object-[top_20%] opacity-100"
                         priority
                     />
                 </motion.div>
             </AnimatePresence>
 
-            {/* Overlay to ensure text readability & blending */}
-            <div className="absolute inset-0 bg-linear-to-b from-background/80 via-background/60 to-background/90" />
-
-            {/* Warm gradient overlay for brand consistency */}
+            {/* Warm gradient overlay for brand consistency - kept light */}
             <div className="absolute inset-0 bg-linear-to-br from-amber-900/10 via-transparent to-orange-950/20 mix-blend-overlay" />
         </div>
     );
