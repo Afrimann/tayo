@@ -32,7 +32,7 @@
     --radius-md: calc(var(--radius) - 2px);
     --radius-sm: calc(var(--radius) - 4px);
 
-    --font-sans: var(--font-outfit), sans-serif;
+    --font-sans: ui-sans-serif, system-ui, sans-serif;
 }
 
 /*

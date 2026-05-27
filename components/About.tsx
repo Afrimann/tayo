@@ -3,7 +3,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus, ArrowUpRight, Users, PenLine, ImageIcon, Mic } from "lucide-react";
+import { Plus, Minus, ArrowUpRight, Users, PenLine, ImageIcon, Mic, X } from "lucide-react";
+
+const fanImages = [
+    { src: "/tayo-nysc.jpg", alt: "Tayo at NYSC" },
+    { src: "/tayo.jpeg", alt: "Omotosho Temitayo" },
+    { src: "/hero-image.png", alt: "Tayo – creative portrait" },
+];
 
 const skillCards = [
     {
@@ -52,16 +58,16 @@ const offerings = [
 ];
 
 const logos = [
-    { name: "BrandAlpha", highlight: false },
-    { name: "Nexus Co.", highlight: false },
-    { name: "CreativeHub", highlight: true },
-    { name: "MediaFlow", highlight: false },
-    { name: "BrandScale", highlight: false },
-    { name: "VisualPros", highlight: false },
-    { name: "ContentKing", highlight: false },
-    { name: "SocialEdge", highlight: false },
-    { name: "VoiceCraft", highlight: false },
-    { name: "TrendMark", highlight: false },
+    { name: "BrandAlpha",   category: "Brand Strategy",    highlight: false },
+    { name: "Nexus Co.",    category: "Social Media",       highlight: false },
+    { name: "CreativeHub",  category: "Content Creation",   highlight: true  },
+    { name: "MediaFlow",    category: "Copywriting",        highlight: false },
+    { name: "BrandScale",   category: "Growth Marketing",   highlight: false },
+    { name: "VisualPros",   category: "Visual Content",     highlight: false },
+    { name: "ContentKing",  category: "Content Strategy",   highlight: false },
+    { name: "SocialEdge",   category: "Social Media",       highlight: false },
+    { name: "VoiceCraft",   category: "Voice Acting",       highlight: false },
+    { name: "TrendMark",    category: "Brand Identity",     highlight: false },
 ];
 
 const fadeUp = (delay = 0) => ({
@@ -84,11 +90,57 @@ const skillCard = {
     },
 };
 
+const fanConfigs = [
+    { rotation: -22, z: 1 },
+    { rotation: 0,   z: 3 },
+    { rotation: 22,  z: 1 },
+];
+
 export default function About() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
+    const [lightboxImg, setLightboxImg] = useState<{ src: string; alt: string } | null>(null);
+    const [hoveredFan, setHoveredFan] = useState<number | null>(null);
 
     return (
         <section id="about" className="bg-[#f7f7f7] py-20 md:py-28 overflow-hidden">
+
+            {/* ── Lightbox ── */}
+            <AnimatePresence>
+                {lightboxImg && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 p-4 cursor-zoom-out"
+                        onClick={() => setLightboxImg(null)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.82, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.82, opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 340, damping: 28 }}
+                            className="relative max-w-md w-full rounded-2xl overflow-hidden shadow-2xl cursor-default"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <Image
+                                src={lightboxImg.src}
+                                alt={lightboxImg.alt}
+                                width={600}
+                                height={800}
+                                className="w-full h-auto object-cover"
+                            />
+                            <button
+                                onClick={() => setLightboxImg(null)}
+                                className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/55 flex items-center justify-center text-white hover:bg-black/75 transition-colors"
+                            >
+                                <X size={15} />
+                            </button>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             <div className="container">
 
                 {/* ─── Block 1: Eyebrow + Profile + Bio ─── */}
@@ -103,31 +155,88 @@ export default function About() {
 
                     <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-8 md:gap-12 lg:gap-16 items-center">
 
-                        {/* Profile photo — 40% column, square */}
+                        {/* Fanned profile photos */}
                         <motion.div
                             {...fadeUp(0.1)}
-                            className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-md mx-auto max-w-xs md:max-w-none"
+                            className="relative mx-auto w-full max-w-60 md:max-w-none"
+                            style={{ height: "360px" }}
                         >
-                            <Image
-                                src="/tayo-nysc.jpg"
-                                alt="Omotosho Temitayo"
-                                fill
-                                className="object-cover object-top"
-                            />
+                            {fanImages.map((img, idx) => {
+                                const cfg = fanConfigs[idx];
+                                const isHovered = hoveredFan === idx;
+                                return (
+                                    <motion.div
+                                        key={img.src}
+                                        className="absolute bottom-0 w-44 h-64 md:w-48 md:h-72 rounded-2xl overflow-hidden shadow-lg cursor-pointer"
+                                        style={{
+                                            left: "50%",
+                                            x: "-50%",
+                                            rotate: cfg.rotation,
+                                            transformOrigin: "bottom center",
+                                            zIndex: isHovered ? 10 : cfg.z,
+                                        }}
+                                        whileHover={{ y: -12, scale: 1.04 }}
+                                        transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                                        onHoverStart={() => setHoveredFan(idx)}
+                                        onHoverEnd={() => setHoveredFan(null)}
+                                        onClick={() => setLightboxImg(img)}
+                                    >
+                                        <Image
+                                            src={img.src}
+                                            alt={img.alt}
+                                            fill
+                                            className="object-cover object-top"
+                                        />
+                                        {/* subtle dark vignette so cards feel distinct */}
+                                        <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                                    </motion.div>
+                                );
+                            })}
                         </motion.div>
 
                         {/* Bio text — 60% column */}
-                        <motion.div {...fadeUp(0.15)} className="space-y-5">
-                            <p className="text-xl md:text-2xl leading-relaxed" style={{ color: "#444444" }}>
-                                <span className="font-bold text-[#0d0d0d]">I&apos;m Omotosho Temitayo</span>, your creative partner in marketing and communications.
-                            </p>
+                        <motion.div {...fadeUp(0.15)} className="space-y-6">
+
+                            {/* Name + role */}
+                            <div>
+                                <h2 className="text-3xl md:text-4xl font-black text-[#0d0d0d] leading-tight mb-2">
+                                    Omotosho Temitayo
+                                </h2>
+                                <p
+                                    className="text-xs font-bold uppercase tracking-[0.2em]"
+                                    style={{ color: "#8B5E3C" }}
+                                >
+                                    Creative Marketing &amp; Communications Strategist
+                                </p>
+                            </div>
+
+                            {/* Accent rule */}
+                            <div className="w-10 h-[3px] rounded-full" style={{ backgroundColor: "#8B5E3C" }} />
+
+                            {/* Bio */}
                             <p className="text-base md:text-lg leading-relaxed" style={{ color: "#555555" }}>
-                                I specialize in sales,{" "}
-                                <strong style={{ color: "#8B5E3C" }}>copywriting</strong>,{" "}
-                                <strong style={{ color: "#8B5E3C" }}>voice acting</strong>, and{" "}
-                                <strong style={{ color: "#8B5E3C" }}>social media management</strong>.
-                                My multilingual background gives me a unique edge in crafting compelling content for diverse audiences — delivering high-quality work that drives measurable results.
+                                Your creative partner in building brands that resonate. With a multilingual
+                                background and a sharp eye for audience psychology, I craft content that
+                                connects — and converts.
                             </p>
+
+                            {/* Specialty tags */}
+                            <div className="flex flex-wrap gap-2 pt-1">
+                                {["Copywriting", "Voice Acting", "Social Media", "Sales Strategy"].map((tag) => (
+                                    <span
+                                        key={tag}
+                                        className="px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide"
+                                        style={{
+                                            backgroundColor: "rgba(139,94,60,0.10)",
+                                            color: "#8B5E3C",
+                                            border: "1px solid rgba(139,94,60,0.18)",
+                                        }}
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+
                         </motion.div>
                     </div>
                 </div>
@@ -328,30 +437,88 @@ export default function About() {
                 </div>
 
                 {/* ─── Block 4: Logos / Social Proof ─── */}
-                <div className="text-center">
-                    <motion.h2
-                        {...fadeUp()}
-                        className="text-2xl md:text-3xl font-black text-[#0d0d0d] mb-10"
-                    >
-                        Trusted by brands worldwide
-                    </motion.h2>
+                <div>
+                    {/* Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-10">
+                        <div>
+                            <motion.p
+                                {...fadeUp()}
+                                className="text-xs font-bold uppercase tracking-[0.2em] mb-2"
+                                style={{ color: "#8B5E3C" }}
+                            >
+                                Clients
+                            </motion.p>
+                            <motion.h2
+                                {...fadeUp(0.05)}
+                                className="text-2xl md:text-3xl font-black text-[#0d0d0d]"
+                            >
+                                Brands I&apos;ve worked with
+                            </motion.h2>
+                        </div>
+                        <motion.p
+                            {...fadeUp(0.1)}
+                            className="text-sm shrink-0"
+                            style={{ color: "#888" }}
+                        >
+                            Startups &amp; growing businesses across industries
+                        </motion.p>
+                    </div>
 
+                    {/* Divider */}
                     <motion.div
                         {...fadeUp(0.1)}
-                        className="flex flex-wrap justify-center gap-3"
+                        className="w-full h-px mb-10"
+                        style={{ backgroundColor: "#e4e4e4" }}
+                    />
+
+                    {/* Brand cards */}
+                    <motion.div
+                        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
+                        variants={skillContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-60px" }}
                     >
                         {logos.map((logo) => (
-                            <span
+                            <motion.div
                                 key={logo.name}
-                                className="px-5 py-2.5 rounded-full text-sm font-semibold"
-                                style={
-                                    logo.highlight
-                                        ? { backgroundColor: "#8B5E3C", color: "#ffffff" }
-                                        : { backgroundColor: "#e8e8e8", color: "#555555" }
-                                }
+                                variants={skillCard}
+                                whileHover={{ y: -3, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                                className="group relative bg-white rounded-xl p-4 flex items-center gap-3 border transition-all duration-200 cursor-default overflow-hidden"
+                                style={{ borderColor: "#ebebeb", boxShadow: "0 1px 4px rgba(0,0,0,0.05)" }}
+                                onMouseEnter={(e) => {
+                                    (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(139,94,60,0.3)";
+                                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 16px rgba(139,94,60,0.10)";
+                                }}
+                                onMouseLeave={(e) => {
+                                    (e.currentTarget as HTMLDivElement).style.borderColor = "#ebebeb";
+                                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 1px 4px rgba(0,0,0,0.05)";
+                                }}
                             >
-                                {logo.name}
-                            </span>
+                                {/* Left accent bar on hover */}
+                                <div
+                                    className="absolute left-0 top-0 bottom-0 w-0.75 rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                                    style={{ backgroundColor: "#8B5E3C" }}
+                                />
+
+                                {/* Monogram badge */}
+                                <div
+                                    className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 text-xs font-black"
+                                    style={
+                                        logo.highlight
+                                            ? { backgroundColor: "#8B5E3C", color: "#fff" }
+                                            : { backgroundColor: "rgba(139,94,60,0.10)", color: "#8B5E3C" }
+                                    }
+                                >
+                                    {logo.name[0]}
+                                </div>
+
+                                {/* Name + category */}
+                                <div className="min-w-0">
+                                    <p className="text-xs font-bold text-[#0d0d0d] truncate">{logo.name}</p>
+                                    <p className="text-[10px] truncate mt-0.5" style={{ color: "#aaa" }}>{logo.category}</p>
+                                </div>
+                            </motion.div>
                         ))}
                     </motion.div>
                 </div>

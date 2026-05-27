@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({
+const bricolage = Bricolage_Grotesque({
     subsets: ["latin"],
-    variable: "--font-outfit",
     display: "swap",
 });
 
@@ -23,7 +22,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="scroll-smooth">
-            <body className={`${outfit.variable} font-sans antialiased bg-background text-foreground`}>
+            <body className={`${bricolage.className} antialiased bg-background text-foreground`}>
                 {children}
             </body>
         </html>
