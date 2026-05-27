@@ -100,7 +100,10 @@
 
 /* Custom Gradients */
 @utility text-gradient {
-    @apply bg-clip-text text-transparent bg-linear-to-r from-amber-400 to-orange-600;
+    background: linear-gradient(to right, #8B5E3C, #6B3F1F);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 @layer components {

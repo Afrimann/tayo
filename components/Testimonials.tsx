@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { User, Briefcase } from "lucide-react";
+import { Quote } from "lucide-react";
 
 const testimonials = [
     {
@@ -34,68 +34,110 @@ const testimonials = [
         type: "Client",
         quote: "The ROI we've seen since working with The Digital Tee has been incredible. Highly recommended for any growing business.",
     },
+    {
+        name: "Amara Obi",
+        role: "Brand Manager, NovaCo",
+        type: "Client",
+        quote: "Tayo has a rare ability to translate business goals into compelling content that actually drives results. Outstanding work.",
+    },
 ];
+
+const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 48, scale: 0.97 },
+    whileInView: { opacity: 1, y: 0, scale: 1 },
+    viewport: { once: true, margin: "-80px" },
+    transition: { duration: 0.65, ease: "easeOut" as const, delay },
+});
+
+function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
+    return (
+        <div className="w-80 md:w-96 shrink-0 bg-white rounded-2xl border border-gray-100 shadow-sm p-7 flex flex-col gap-5 whitespace-normal">
+            {/* Quote icon */}
+            <Quote size={20} style={{ color: "#8B5E3C" }} className="shrink-0" />
+
+            <p className="text-sm md:text-base leading-relaxed flex-1" style={{ color: "#444444" }}>
+                &ldquo;{testimonial.quote}&rdquo;
+            </p>
+
+            <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                {/* Avatar placeholder */}
+                <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0"
+                    style={{ backgroundColor: testimonial.type === "Client" ? "#6B3F1F" : "#555555" }}
+                >
+                    {testimonial.name.charAt(0)}
+                </div>
+                <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold text-[#0d0d0d] truncate">{testimonial.name}</p>
+                    <p className="text-xs truncate" style={{ color: "#999999" }}>{testimonial.role}</p>
+                </div>
+                <span
+                    className="text-xs font-semibold px-2.5 py-1 rounded-full shrink-0"
+                    style={
+                        testimonial.type === "Client"
+                            ? { backgroundColor: "rgba(139,94,60,0.10)", color: "#8B5E3C" }
+                            : { backgroundColor: "#f0f0f0", color: "#666666" }
+                    }
+                >
+                    {testimonial.type}
+                </span>
+            </div>
+        </div>
+    );
+}
 
 export default function Testimonials() {
     return (
-        <section className="py-20 md:py-32 overflow-hidden bg-background">
-            <div className="container mb-12 text-center">
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-3xl md:text-5xl font-bold mb-6"
-                >
-                    What People <span className="text-gradient">Say</span>
-                </motion.h2>
-                <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    Hear from the clients I've helped grow and the colleagues I've collaborated with.
-                </p>
+        <section id="testimonials" className="py-20 md:py-28 bg-[#f7f7f7] overflow-hidden">
+
+            {/* Header */}
+            <div className="container mb-14 md:mb-16">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <motion.p
+                            {...fadeUp()}
+                            className="text-xs font-bold uppercase tracking-[0.2em] mb-3"
+                            style={{ color: "#8B5E3C" }}
+                        >
+                            Testimonials
+                        </motion.p>
+                        <motion.h2
+                            {...fadeUp(0.05)}
+                            className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0d0d0d] leading-tight"
+                        >
+                            What People Say
+                        </motion.h2>
+                    </div>
+                    <motion.p
+                        {...fadeUp(0.1)}
+                        className="text-base md:text-lg leading-relaxed max-w-sm md:text-right"
+                        style={{ color: "#555555" }}
+                    >
+                        Hear from the clients and colleagues who&apos;ve experienced the work firsthand.
+                    </motion.p>
+                </div>
             </div>
 
-            <div className="relative flex w-full overflow-hidden mask-gradient-x">
-                {/* Gradient Masks for smooth fade edges */}
-                <div className="absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-background to-transparent z-10" />
-                <div className="absolute right-0 top-0 bottom-0 w-20 bg-linear-to-l from-background to-transparent z-10" />
+            {/* Scrolling marquee */}
+            <div className="relative w-full overflow-hidden">
+                {/* Left fade */}
+                <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+                    style={{ background: "linear-gradient(to right, #f7f7f7, transparent)" }} />
+                {/* Right fade */}
+                <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+                    style={{ background: "linear-gradient(to left, #f7f7f7, transparent)" }} />
 
                 <motion.div
-                    className="flex gap-8 whitespace-nowrap py-4"
+                    className="flex gap-5 py-2 w-max"
                     animate={{ x: ["0%", "-50%"] }}
-                    transition={{
-                        repeat: Infinity,
-                        ease: "linear",
-                        duration: 30, // Adjust speed here
-                    }}
+                    transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
                 >
-                    {[...testimonials, ...testimonials].map((testimonial, index) => (
-                        <div
-                            key={index}
-                            className="w-[350px] md:w-[450px] p-8 rounded-3xl bg-white/5 border border-white/10 shrink-0 whitespace-normal hover:bg-white/10 transition-colors"
-                        >
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className={`h-12 w-12 rounded-full flex items-center justify-center ${testimonial.type === 'Client' ? 'bg-primary/20 text-primary' : 'bg-secondary/40 text-white'
-                                    }`}>
-                                    {testimonial.type === 'Client' ? <User size={24} /> : <Briefcase size={24} />}
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-lg">{testimonial.name}</h4>
-                                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                                </div>
-                                <span className={`ml-auto px-3 py-1 rounded-full text-xs font-medium border ${testimonial.type === 'Client'
-                                        ? 'border-primary/30 text-primary bg-primary/10'
-                                        : 'border-white/20 text-muted-foreground bg-white/5'
-                                    }`}>
-                                    {testimonial.type}
-                                </span>
-                            </div>
-                            <p className="text-muted-foreground italic leading-relaxed">
-                                "{testimonial.quote}"
-                            </p>
-                        </div>
+                    {[...testimonials, ...testimonials].map((testimonial, i) => (
+                        <TestimonialCard key={i} testimonial={testimonial} />
                     ))}
                 </motion.div>
             </div>
+
         </section>
     );
 }

@@ -3,48 +3,72 @@
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
 
+const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 48, scale: 0.97 },
+    whileInView: { opacity: 1, y: 0, scale: 1 },
+    viewport: { once: true, margin: "-80px" },
+    transition: { duration: 0.65, ease: "easeOut" as const, delay },
+});
+
 export default function Newsletter() {
     return (
-        <section className="py-20 md:py-24 relative overflow-hidden">
-            <div className="container max-w-5xl relative z-10">
-                <div className="bg-primary rounded-[2.5rem] p-8 md:p-16 text-center relative overflow-hidden shadow-2xl shadow-primary/20">
-                    {/* Background Pattern */}
-                    <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-soft-light" />
-                    <div className="absolute top-0 left-0 w-full h-full bg-linear-to-br from-white/10 to-transparent pointer-events-none" />
-                    <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/20 rounded-full blur-[80px]" />
-                    <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-black/20 rounded-full blur-[80px]" />
+        <section className="py-20 md:py-28 bg-[#f7f7f7] overflow-hidden">
+            <div className="container">
 
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="relative z-10"
+                <div className="max-w-2xl mx-auto text-center">
+                    <motion.p
+                        {...fadeUp()}
+                        className="text-xs font-bold uppercase tracking-[0.2em] mb-3"
+                        style={{ color: "#8B5E3C" }}
                     >
-                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                            Stay Ahead of the Curve
-                        </h2>
-                        <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-                            Join 5,000+ marketers and business owners receiving my weekly tips on digital strategy, content trends, and brand growth.
-                        </p>
+                        Newsletter
+                    </motion.p>
+                    <motion.h2
+                        {...fadeUp(0.05)}
+                        className="text-3xl md:text-4xl font-black text-[#0d0d0d] leading-tight mb-4"
+                    >
+                        Stay Ahead of the Curve
+                    </motion.h2>
+                    <motion.p
+                        {...fadeUp(0.1)}
+                        className="text-base md:text-lg leading-relaxed mb-10"
+                        style={{ color: "#555555" }}
+                    >
+                        Join 5,000+ marketers and business owners receiving weekly tips on digital strategy, content trends, and brand growth.
+                    </motion.p>
 
-                        <form className="flex flex-col md:flex-row gap-4 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
-                            <input
-                                type="email"
-                                placeholder="Enter your email address"
-                                className="flex-1 px-6 py-4 rounded-full bg-white text-background placeholder:text-muted-foreground focus:outline-none focus:ring-4 focus:ring-white/25 transition-shadow"
-                            />
-                            <button className="px-8 py-4 rounded-full bg-secondary text-white font-bold hover:bg-secondary/90 transition-colors shadow-lg flex items-center justify-center gap-2 group">
-                                Subscribe
-                                <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                            </button>
-                        </form>
+                    <motion.form
+                        {...fadeUp(0.15)}
+                        className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+                        onSubmit={(e) => e.preventDefault()}
+                    >
+                        <input
+                            type="email"
+                            placeholder="Enter your email address"
+                            className="flex-1 px-5 py-3.5 rounded-full border border-gray-200 bg-white text-sm text-[#0d0d0d] placeholder:text-gray-400 focus:outline-none transition-shadow"
+                            style={{ boxShadow: "none" }}
+                            onFocus={(e) => { e.currentTarget.style.boxShadow = "0 0 0 3px rgba(139,94,60,0.25)"; }}
+                            onBlur={(e) => { e.currentTarget.style.boxShadow = "none"; }}
+                        />
+                        <button
+                            type="submit"
+                            className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-white shrink-0 transition-all hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0"
+                            style={{ backgroundColor: "#6B3F1F" }}
+                        >
+                            Subscribe
+                            <Send size={14} />
+                        </button>
+                    </motion.form>
 
-                        <p className="text-white/60 text-sm mt-6">
-                            No spam, ever. Unsubscribe at any time.
-                        </p>
-                    </motion.div>
+                    <motion.p
+                        {...fadeUp(0.2)}
+                        className="mt-5 text-xs"
+                        style={{ color: "#999999" }}
+                    >
+                        No spam, ever. Unsubscribe at any time.
+                    </motion.p>
                 </div>
+
             </div>
         </section>
     );
