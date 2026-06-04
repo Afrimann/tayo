@@ -18,7 +18,9 @@ export const metadata: Metadata = {
     title: "TheDigitalTee | Social Media Management & Brand Strategy",
     description: "Omotosho Temitayo — Results-driven social media management, content creation & brand strategy for businesses that mean business.",
     icons: {
-        icon: "/favicon.ico",
+        icon: "/tayo-hero.jpg",
+        shortcut: "/tayo-hero.jpg",
+        apple: "/tayo-hero.jpg",
     },
     openGraph: {
         title: "TheDigitalTee | Social Media Management & Brand Strategy",
