@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, X, Award } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
 import Link from "next/link";
 
 const MotionLink = motion(Link);
@@ -185,21 +185,34 @@ export default function About() {
                         Awards &amp; Recognition
                     </motion.h2>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {[
-                            { title: "Rising Star Award 2025", org: "Daniel Iloh Limited" },
-                            { title: "Best Employee of the Month", org: "Daniel Iloh Limited — October 2025" },
+                            {
+                                title: "Rising Star Award 2025",
+                                org: "Daniel Iloh Limited",
+                                image: "/images/awards/rising-star-2025.jpg",
+                            },
+                            {
+                                title: "Best Employee of the Month",
+                                org: "Daniel Iloh Limited — October 2025",
+                                image: "/images/awards/best-employee-oct-2025.jpg",
+                            },
                         ].map((award, i) => (
                             <motion.div
                                 key={award.title}
                                 {...fadeUp(i * 0.1)}
-                                className="flex items-center gap-5 rounded-2xl p-6 border"
-                                style={{ backgroundColor: "rgba(125,74,63,0.05)", borderColor: "rgba(125,74,63,0.15)" }}
+                                className="rounded-2xl overflow-hidden border shadow-sm"
+                                style={{ borderColor: "rgba(125,74,63,0.15)" }}
                             >
-                                <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: "#7D4A3F" }}>
-                                    <Award size={20} className="text-white" />
+                                <div className="relative w-full aspect-3/4">
+                                    <Image
+                                        src={award.image}
+                                        alt={award.title}
+                                        fill
+                                        className="object-cover object-top"
+                                    />
                                 </div>
-                                <div>
+                                <div className="px-5 py-4" style={{ backgroundColor: "rgba(125,74,63,0.05)" }}>
                                     <p className="font-bold text-[#1C1C1C] mb-0.5">{award.title}</p>
                                     <p className="text-sm" style={{ color: "#5C5C5C" }}>{award.org}</p>
                                 </div>

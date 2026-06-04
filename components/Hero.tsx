@@ -53,7 +53,7 @@ export default function Hero() {
                         className="flex lg:hidden"
                     >
                         <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden ring-4 ring-amber-100 shadow-xl">
-                            <Image src="/tayo-nysc.jpg" alt="Digitaltee" fill className="object-cover object-top" priority />
+                            <Image src="/portrait.jpg" alt="Digitaltee" fill className="object-cover object-top" priority />
                         </div>
                     </motion.div>
 
@@ -148,7 +148,7 @@ export default function Hero() {
                             transition={{ duration: 1.4, ease: smooth, delay: 0.4 }}
                         >
                             <Image
-                                src="/tayo-nysc.jpg"
+                                src="/portrait.jpg"
                                 alt="Digitaltee — Digital Marketing Expert"
                                 fill
                                 className="object-cover object-top"
