@@ -2,14 +2,17 @@
 
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
+
+const MotionLink = motion(Link);
 
 const ease = [0.76, 0, 0.24, 1] as [number, number, number, number];
 const smooth = [0.25, 0.46, 0.45, 0.94] as [number, number, number, number];
 
 const lines = [
-    { text: "Creative",   delay: 0.35 },
-    { text: "Strategies", delay: 0.47 },
-    { text: "That Drive", delay: 0.59 },
+    { text: "Your brand",  delay: 0.35 },
+    { text: "deserves to", delay: 0.47 },
+    { text: "be seen and", delay: 0.59 },
 ];
 
 const bars = [
@@ -54,18 +57,18 @@ export default function Hero() {
                         </div>
                     </motion.div>
 
-                    {/* Eyebrow — blur in */}
+                    {/* Eyebrow */}
                     <motion.p
                         initial={{ opacity: 0, filter: "blur(8px)", y: 12 }}
                         animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
                         transition={{ duration: 0.7, ease: smooth, delay: 0.2 }}
-                        className="text-xs font-semibold text-gray-400 uppercase tracking-[0.2em]"
+                        className="text-xs font-semibold text-[#5C5C5C] uppercase tracking-[0.2em]"
                     >
-                        Digital Marketer &amp; Social Media Strategist
+                        Content that connects. Strategy that converts.
                     </motion.p>
 
                     {/* Headline — line-by-line reveal */}
-                    <h1 className="text-5xl sm:text-6xl lg:text-[3.6rem] xl:text-[4.8rem] font-black text-[#0d0d0d] leading-[0.93] tracking-tight">
+                    <h1 className="text-5xl sm:text-6xl lg:text-[3.6rem] xl:text-[4.8rem] font-black text-[#1C1C1C] leading-[0.93] tracking-tight">
                         {lines.map(({ text, delay }) => (
                             <span key={text} className="block overflow-hidden pb-1">
                                 <motion.span
@@ -85,7 +88,7 @@ export default function Hero() {
                                 animate={{ y: "0%" }}
                                 transition={{ duration: 0.8, ease, delay: 0.71 }}
                             >
-                                Real Results
+                                remembered.
                             </motion.span>
                         </span>
                     </h1>
@@ -95,9 +98,9 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 24 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.65, ease: smooth, delay: 0.85 }}
-                        className="text-gray-500 text-base md:text-[17px] leading-relaxed max-w-md"
+                        className="text-[#5C5C5C] text-base md:text-[17px] leading-relaxed max-w-md"
                     >
-                        I help brands grow their audience through strategic social media management, data-driven marketing, and premium content aesthetics.
+                        Social media management, content creation &amp; brand strategy for businesses that mean business.
                     </motion.p>
 
                     {/* CTAs */}
@@ -107,26 +110,24 @@ export default function Hero() {
                         transition={{ duration: 0.6, ease: smooth, delay: 0.95 }}
                         className="flex flex-wrap items-center gap-5 justify-center lg:justify-start"
                     >
-                        <motion.a
-                            href="#contact"
+                        <MotionLink
+                            href="/work"
                             className="inline-flex h-12 items-center rounded-full px-8 text-sm font-semibold text-white"
-                            style={{ backgroundColor: "#6B3F1F" }}
-                            whileHover={{ scale: 1.05, y: -2, boxShadow: "0 14px 30px rgba(107,63,31,0.35)" }}
+                            style={{ backgroundColor: "#7D4A3F" }}
+                            whileHover={{ scale: 1.05, y: -2, boxShadow: "0 14px 30px rgba(125,74,63,0.35)" }}
                             whileTap={{ scale: 0.97 }}
                             transition={{ type: "spring", stiffness: 300, damping: 20 }}
                         >
-                            Work With Me
-                        </motion.a>
-                        <a
-                            href="#about"
-                            className="inline-flex items-center gap-2.5 text-sm font-medium text-[#0d0d0d] hover:opacity-60 transition-opacity"
+                            View My Work
+                        </MotionLink>
+                        <MotionLink
+                            href="/contact"
+                            className="inline-flex h-12 items-center rounded-full px-8 text-sm font-semibold text-[#7D4A3F] border-2 border-[#7D4A3F] hover:bg-[#7D4A3F] hover:text-white transition-colors duration-200"
+                            whileTap={{ scale: 0.97 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 20 }}
                         >
-                            <span className="relative flex h-2.5 w-2.5">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
-                                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
-                            </span>
-                            Available for new projects
-                        </a>
+                            Let&apos;s Talk
+                        </MotionLink>
                     </motion.div>
                 </div>
 
@@ -198,7 +199,7 @@ export default function Hero() {
                                         <div className="h-1 rounded-full bg-white/10">
                                             <motion.div
                                                 className="h-full rounded-full"
-                                                style={{ backgroundColor: "#8B5E3C" }}
+                                                style={{ backgroundColor: "#7D4A3F" }}
                                                 initial={{ width: 0 }}
                                                 animate={{ width: `${item.val}%` }}
                                                 transition={{ duration: 1.1, ease: smooth, delay: 1.45 + i * 0.18 }}

@@ -5,40 +5,22 @@ import { Quote } from "lucide-react";
 
 const testimonials = [
     {
-        name: "Sarah Johnson",
-        role: "Marketing Director @ TechFlow",
+        name: "Mr. Daniel",
+        role: "CEO, Daniel Iloh Limited",
         type: "Client",
-        quote: "Tayo's strategic approach to our social media completely transformed our online presence. Engagement is up 200%!",
+        quote: "Working with TheDigitalTee transformed how our brand shows up online. The consistency, creativity, and results have been outstanding. Our engagement and reach grew significantly under her management.",
     },
     {
-        name: "David Chen",
-        role: "Content Strategist",
-        type: "Colleague",
-        quote: "I've worked with Tayo on several campaigns. His eye for design and understanding of viral trends is unmatched.",
-    },
-    {
-        name: "Emily Davis",
-        role: "Founder, Glow Up Skincare",
+        name: "Mr. Moses",
+        role: "Founder, Languages for Growth and Impact Foundation",
         type: "Client",
-        quote: "Professional, creative, and data-driven. Tayo didn't just post content; he built a community around our brand.",
+        quote: "Temitayo brought both professionalism and genuine passion to our social media. She understood our mission deeply and created content that truly resonated with our audience and amplified our reach.",
     },
     {
-        name: "Michael Brown",
-        role: "Senior Copywriter",
-        type: "Colleague",
-        quote: "A true team player who brings fresh ideas to every brainstorming session. It's always a pleasure collaborating with him.",
-    },
-    {
-        name: "Jessica Lee",
-        role: "CEO, Urban Eats",
+        name: "Ashewa Beauty Clinic",
+        role: "Beauty & Wellness Brand",
         type: "Client",
-        quote: "The ROI we've seen since working with The Digital Tee has been incredible. Highly recommended for any growing business.",
-    },
-    {
-        name: "Amara Obi",
-        role: "Brand Manager, NovaCo",
-        type: "Client",
-        quote: "Tayo has a rare ability to translate business goals into compelling content that actually drives results. Outstanding work.",
+        quote: "The page revamp was a game-changer for us. TheDigitalTee completely overhauled our online presence — from the visuals to the strategy — and the difference was visible almost immediately.",
     },
 ];
 
@@ -53,7 +35,7 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
     return (
         <div className="w-80 md:w-96 shrink-0 bg-white rounded-2xl border border-gray-100 shadow-sm p-7 flex flex-col gap-5 whitespace-normal">
             {/* Quote icon */}
-            <Quote size={20} style={{ color: "#8B5E3C" }} className="shrink-0" />
+            <Quote size={20} style={{ color: "#7D4A3F" }} className="shrink-0" />
 
             <p className="text-sm md:text-base leading-relaxed flex-1" style={{ color: "#444444" }}>
                 &ldquo;{testimonial.quote}&rdquo;
@@ -63,19 +45,19 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
                 {/* Avatar placeholder */}
                 <div
                     className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0"
-                    style={{ backgroundColor: testimonial.type === "Client" ? "#6B3F1F" : "#555555" }}
+                    style={{ backgroundColor: testimonial.type === "Client" ? "#7D4A3F" : "#555555" }}
                 >
                     {testimonial.name.charAt(0)}
                 </div>
                 <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold text-[#0d0d0d] truncate">{testimonial.name}</p>
+                    <p className="text-sm font-bold text-[#1C1C1C] truncate">{testimonial.name}</p>
                     <p className="text-xs truncate" style={{ color: "#999999" }}>{testimonial.role}</p>
                 </div>
                 <span
                     className="text-xs font-semibold px-2.5 py-1 rounded-full shrink-0"
                     style={
                         testimonial.type === "Client"
-                            ? { backgroundColor: "rgba(139,94,60,0.10)", color: "#8B5E3C" }
+                            ? { backgroundColor: "rgba(125,74,63,0.10)", color: "#7D4A3F" }
                             : { backgroundColor: "#f0f0f0", color: "#666666" }
                     }
                 >
@@ -97,13 +79,13 @@ export default function Testimonials() {
                         <motion.p
                             {...fadeUp()}
                             className="text-xs font-bold uppercase tracking-[0.2em] mb-3"
-                            style={{ color: "#8B5E3C" }}
+                            style={{ color: "#7D4A3F" }}
                         >
                             Testimonials
                         </motion.p>
                         <motion.h2
                             {...fadeUp(0.05)}
-                            className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0d0d0d] leading-tight"
+                            className="text-3xl md:text-4xl lg:text-5xl font-black text-[#1C1C1C] leading-tight"
                         >
                             What People Say
                         </motion.h2>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
+import Link from "next/link";
 
 interface MobileMenuProps {
     isOpen: boolean;
@@ -10,13 +11,12 @@ interface MobileMenuProps {
 }
 
 const menuLinks = [
-    { label: "Home", href: "#" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Work", href: "#work" },
-    { label: "Testimonials", href: "#testimonials" },
-    { label: "Articles", href: "#articles" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Work", href: "/work" },
+    { label: "Blog", href: "/blog" },
+    { label: "Contact", href: "/contact" },
 ];
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
@@ -46,50 +46,46 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             role="dialog"
             aria-modal="true"
         >
-            {/* Backdrop */}
             <div
                 className={`absolute inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0"}`}
                 onClick={onClose}
             />
 
-            {/* Slide-over panel — white */}
             <div
-                className={`absolute right-0 top-0 bottom-0 w-4/5 max-w-sm bg-white border-l border-gray-100 shadow-2xl transition-transform duration-300 ease-out flex flex-col ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+                className={`absolute right-0 top-0 bottom-0 w-4/5 max-w-sm bg-[#FAF7F4] border-l border-gray-100 shadow-2xl transition-transform duration-300 ease-out flex flex-col ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
-                {/* Header */}
                 <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-                    <span className="text-lg font-black text-[#0d0d0d] tracking-tight">TheDigitalTee</span>
+                    <span className="text-lg font-black text-[#1C1C1C] tracking-tight">TheDigitalTee</span>
                     <button
                         onClick={onClose}
-                        className="p-2 rounded-full hover:bg-gray-100 transition-colors text-[#0d0d0d]"
+                        className="p-2 rounded-full hover:bg-gray-100 transition-colors text-[#1C1C1C]"
                         aria-label="Close menu"
                     >
                         <X size={20} />
                     </button>
                 </div>
 
-                {/* Nav links */}
                 <nav className="flex-1 px-6 py-4 flex flex-col">
                     {menuLinks.map((link, index) => (
-                        <a
+                        <Link
                             key={link.label}
                             href={link.href}
                             onClick={onClose}
-                            className="text-lg font-semibold py-4 border-b border-gray-100 text-[#0d0d0d] hover:text-[#8B5E3C] hover:pl-2 transition-all duration-200"
+                            className="text-lg font-semibold py-4 border-b border-gray-100 text-[#1C1C1C] hover:text-[#7D4A3F] hover:pl-2 transition-all duration-200"
                             style={{ transitionDelay: `${index * 40}ms` }}
                         >
                             {link.label}
-                        </a>
+                        </Link>
                     ))}
 
                     <div className="mt-8">
-                        <a
-                            href="#contact"
+                        <Link
+                            href="/contact"
                             onClick={onClose}
-                            className="flex w-full items-center justify-center rounded-full border-2 border-[#0d0d0d] py-3.5 text-base font-semibold text-[#0d0d0d] hover:bg-[#0d0d0d] hover:text-white transition-all duration-200 active:scale-95"
+                            className="flex w-full items-center justify-center rounded-full py-3.5 text-base font-semibold text-white bg-[#7D4A3F] hover:bg-[#6B3F35] transition-all duration-200 active:scale-95"
                         >
-                            Contact us
-                        </a>
+                            Let&apos;s Work Together
+                        </Link>
                     </div>
                 </nav>
 

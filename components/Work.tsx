@@ -3,6 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const fadeUp = (delay = 0) => ({
     initial: { opacity: 0, y: 48, scale: 0.97 },
@@ -39,10 +40,10 @@ export default function Work() {
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 md:mb-16">
                     <div>
-                        <motion.p {...fadeUp()} className="text-xs font-bold uppercase tracking-[0.2em] mb-3" style={{ color: "#8B5E3C" }}>
+                        <motion.p {...fadeUp()} className="text-xs font-bold uppercase tracking-[0.2em] mb-3" style={{ color: "#7D4A3F" }}>
                             Portfolio
                         </motion.p>
-                        <motion.h2 {...fadeUp(0.06)} className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0d0d0d] leading-tight">
+                        <motion.h2 {...fadeUp(0.06)} className="text-3xl md:text-4xl lg:text-5xl font-black text-[#1C1C1C] leading-tight">
                             Selected Work
                         </motion.h2>
                     </div>
@@ -79,7 +80,7 @@ export default function Work() {
                             <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/30 to-transparent" />
                             <div
                                 className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
-                                style={{ backgroundColor: "#6B3F1F" }}
+                                style={{ backgroundColor: "#7D4A3F" }}
                             />
 
                             <div className="absolute inset-0 p-7 md:p-8 flex flex-col justify-end">
@@ -106,9 +107,9 @@ export default function Work() {
 
                 {/* Footer link */}
                 <motion.div {...fadeUp(0.2)} className="mt-10 text-center">
-                    <a href="#contact" className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors" style={{ color: "#8B5E3C" }}>
-                        Want to see more? Let&apos;s talk <ArrowUpRight size={14} />
-                    </a>
+                    <Link href="/work" className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors" style={{ color: "#7D4A3F" }}>
+                        See Full Portfolio <ArrowUpRight size={14} />
+                    </Link>
                 </motion.div>
 
             </div>

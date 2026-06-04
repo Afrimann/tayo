@@ -4,12 +4,13 @@ import { motion, Variants } from "framer-motion";
 import {
   Users,
   Palette,
-  TrendingUp,
-  Share2,
-  PenLine,
-  Mic,
+  Camera,
+  Lightbulb,
   ArrowUpRight,
 } from "lucide-react";
+import Link from "next/link";
+
+const MotionLink = motion(Link);
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 48, scale: 0.97 },
@@ -37,44 +38,34 @@ const services = [
   {
     num: "01",
     title: "Social Media Management",
+    tagline: "Taking the stress out of your online presence.",
     description:
-      "Comprehensive management of your social platforms — content scheduling, audience engagement, and consistent account growth.",
+      "Full-service management of your social media platforms so you can focus on running your business. From content scheduling and community engagement to brand voice consistency.",
     icon: Users,
   },
   {
     num: "02",
     title: "Content Creation",
+    tagline: "Visuals that stop the scroll. Captions that close the sale.",
     description:
-      "High-quality visual and written content aligned with your brand tone: graphics, carousels, captions, and short-form video.",
+      "Professional content tailored to your brand — shot on-site or in-studio. Personal brand shoots, product photography, and on-location content creation.",
     icon: Palette,
   },
   {
     num: "03",
-    title: "Copywriting",
+    title: "Mobile Videography & Photography",
+    tagline: "Every moment deserves to be captured beautifully.",
     description:
-      "Persuasive, audience-focused copy for ads, emails, websites, and landing pages that turns readers into customers.",
-    icon: PenLine,
+      "Professional-grade mobile videography and photography for events, launches, and campaigns. Every frame is captured with intention and edited for impact.",
+    icon: Camera,
   },
   {
     num: "04",
-    title: "Voice Acting",
+    title: "Brand Consultation & Strategy",
+    tagline: "A clear brand identity is your most valuable business asset.",
     description:
-      "Professional voice recordings for ads, explainer videos, podcasts, and brand storytelling — multilingual capability included.",
-    icon: Mic,
-  },
-  {
-    num: "05",
-    title: "Social Media Strategy",
-    description:
-      "Custom strategies built on audience analysis, competitor insights, and long-term growth planning tailored to your goals.",
-    icon: TrendingUp,
-  },
-  {
-    num: "06",
-    title: "Brand Consultation",
-    description:
-      "Helping businesses and personal brands define a unique identity that speaks directly to their target audience.",
-    icon: Share2,
+      "For businesses and personal brands ready to define who they are and how they show up. Brand discovery, voice development, and a custom social media strategy.",
+    icon: Lightbulb,
   },
 ];
 
@@ -88,13 +79,13 @@ export default function Services() {
             <motion.p
               {...fadeUp()}
               className="text-xs font-bold uppercase tracking-[0.2em] mb-3"
-              style={{ color: "#8B5E3C" }}
+              style={{ color: "#7D4A3F" }}
             >
               Services
             </motion.p>
             <motion.h2
               {...fadeUp(0.06)}
-              className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0d0d0d] leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-black text-[#1C1C1C] leading-tight"
             >
               Services Built to
               <br className="hidden sm:block" /> Grow Your Brand
@@ -141,20 +132,23 @@ export default function Services() {
                       transition: { type: "spring", stiffness: 300 },
                     }}
                   >
-                    <Icon size={20} style={{ color: "#8B5E3C" }} />
+                    <Icon size={20} style={{ color: "#7D4A3F" }} />
                   </motion.div>
                   <span
                     className="text-xs font-bold tabular-nums"
-                    style={{ color: "#8B5E3C" }}
+                    style={{ color: "#7D4A3F" }}
                   >
                     {service.num}
                   </span>
                 </div>
 
                 <div className="flex flex-col gap-2 flex-1">
-                  <h3 className="text-lg font-bold text-[#0d0d0d]">
+                  <h3 className="text-lg font-bold text-[#1C1C1C]">
                     {service.title}
                   </h3>
+                  <p className="text-xs font-medium italic mb-1" style={{ color: "#7D4A3F" }}>
+                    {service.tagline}
+                  </p>
                   <p
                     className="text-sm leading-relaxed"
                     style={{ color: "#666666" }}
@@ -163,17 +157,17 @@ export default function Services() {
                   </p>
                 </div>
 
-                <a
-                  href="#contact"
+                <Link
+                  href="/services"
                   className="inline-flex items-center gap-1 text-sm font-semibold transition-colors self-start"
-                  style={{ color: "#8B5E3C" }}
+                  style={{ color: "#7D4A3F" }}
                 >
-                  Get started
+                  Learn More
                   <ArrowUpRight
                     size={14}
                     className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                   />
-                </a>
+                </Link>
               </motion.div>
             );
           })}
@@ -186,7 +180,7 @@ export default function Services() {
           style={{ backgroundColor: "#f7f7f7" }}
         >
           <div>
-            <h3 className="text-2xl md:text-3xl font-black text-[#0d0d0d] mb-2">
+            <h3 className="text-2xl md:text-3xl font-black text-[#1C1C1C] mb-2">
               Ready to grow your brand?
             </h3>
             <p className="text-base" style={{ color: "#666666" }}>
@@ -194,20 +188,20 @@ export default function Services() {
               waiting.
             </p>
           </div>
-          <motion.a
-            href="#contact"
+          <MotionLink
+            href="/contact"
             className="inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold text-white shrink-0"
-            style={{ backgroundColor: "#6B3F1F" }}
+            style={{ backgroundColor: "#7D4A3F" }}
             whileHover={{
               scale: 1.05,
               y: -2,
-              boxShadow: "0 14px 28px rgba(107,63,31,0.35)",
+              boxShadow: "0 14px 28px rgba(125,74,63,0.35)",
             }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
-            Let&apos;s Talk <ArrowUpRight size={15} />
-          </motion.a>
+            Start a Conversation with TEE <ArrowUpRight size={15} />
+          </MotionLink>
         </motion.div>
       </div>
     </section>

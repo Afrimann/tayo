@@ -1,17 +1,29 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque } from "next/font/google";
+import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
+const playfair = Playfair_Display({
     subsets: ["latin"],
     display: "swap",
+    variable: "--font-playfair",
+});
+
+const dmSans = DM_Sans({
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-dm-sans",
 });
 
 export const metadata: Metadata = {
-    title: "Omotosho Temitayo | Digital Marketer & Strategist",
-    description: "Results-driven Digital Marketer, Social Media Manager, and Brand Strategist helping brands grow their audience and convert.",
+    title: "TheDigitalTee | Social Media Management & Brand Strategy",
+    description: "Omotosho Temitayo — Results-driven social media management, content creation & brand strategy for businesses that mean business.",
     icons: {
         icon: "/favicon.ico",
+    },
+    openGraph: {
+        title: "TheDigitalTee | Social Media Management & Brand Strategy",
+        description: "Content that connects. Strategy that converts.",
+        type: "website",
     },
 };
 
@@ -22,7 +34,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="scroll-smooth">
-            <body className={`${bricolage.className} antialiased bg-background text-foreground`}>
+            <body className={`${playfair.variable} ${dmSans.variable} font-sans antialiased bg-[#FAF7F4] text-[#1C1C1C]`}>
                 {children}
             </body>
         </html>
