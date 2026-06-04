@@ -20,10 +20,10 @@ const stats = [
 ];
 
 const analyticsScreenshots = [
-    { src: "/images/analytics/metrics-1.png",       alt: "TikTok key metrics — 32,575 video views, 189 new followers" },
-    { src: "/images/analytics/metrics-2.png",       alt: "TikTok key metrics — 22,340 video views, 232 new followers" },
-    { src: "/images/analytics/traffic-source.png",  alt: "Traffic source — 99.7% For You page" },
-    { src: "/images/analytics/post-views.png",      alt: "Post views 174K, Likes 9,260, Comments 582" },
+    { src: "/images/analytics/metrics-1.jpg",       alt: "TikTok key metrics — 32,575 video views, 189 new followers" },
+    { src: "/images/analytics/metrics-2.jpg",       alt: "TikTok key metrics — 22,340 video views, 232 new followers" },
+    { src: "/images/analytics/traffic-source.jpg",  alt: "Traffic source — 99.7% For You page" },
+    { src: "/images/analytics/post-views.jpg",      alt: "Post views 174K, Likes 9,260, Comments 582" },
 ];
 
 export default function WorkPage() {
@@ -71,17 +71,18 @@ export default function WorkPage() {
                             Real dashboard screenshots from managed accounts.
                         </p>
 
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-start">
                             {analyticsScreenshots.map((img) => (
                                 <div
                                     key={img.src}
-                                    className="relative rounded-2xl overflow-hidden bg-white/5 border border-white/10 aspect-square"
+                                    className="rounded-2xl overflow-hidden bg-white/5 border border-white/10"
                                 >
                                     <Image
                                         src={img.src}
                                         alt={img.alt}
-                                        fill
-                                        className="object-cover object-top"
+                                        width={400}
+                                        height={600}
+                                        className="w-full h-auto"
                                         sizes="(max-width: 768px) 50vw, 25vw"
                                     />
                                 </div>
@@ -103,13 +104,13 @@ export default function WorkPage() {
                             A full Instagram profile revamp — from an unnamed page with no strategy to a branded, conversion-ready presence.
                         </p>
 
-                        <div className="relative rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-sm">
+                        <div className="rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-sm max-w-2xl mx-auto">
                             <Image
-                                src="/images/work/ashewa-revamp.png"
+                                src="/images/work/ASHEWA CASE STUDY.png"
                                 alt="Ashewa Beauty Clinic — before and after page revamp by TheDigitalTee"
-                                width={1200}
-                                height={700}
-                                className="w-full h-auto object-contain"
+                                width={800}
+                                height={600}
+                                className="w-full h-auto"
                             />
                         </div>
                     </div>
