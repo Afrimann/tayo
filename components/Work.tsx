@@ -16,7 +16,7 @@ const fadeUp = (delay = 0) => ({
 const container: Variants = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
-};
+};  
 
 const card: Variants = {
     hidden: { opacity: 0, y: 48, scale: 0.96 },
