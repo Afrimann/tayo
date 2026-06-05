@@ -16,6 +16,7 @@ const menuLinks = [
     { label: "Services", href: "/services" },
     { label: "Work", href: "/work" },
     { label: "Blog", href: "/blog" },
+    { label: "Reviews", href: "/reviews" },
     { label: "Contact", href: "/contact" },
 ];
 
